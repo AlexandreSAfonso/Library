@@ -1,0 +1,61 @@
+{% extends 'patten_page.html' %}
+
+{% block 'title' %} Login {% endblock %}
+
+{% block 'content' %} 
+
+<div class="container-fluid">
+    <br>
+    {% if status == '0' %}
+        <div class="alert alert-success" role="alert">
+            All Clear, please Login!
+        </div>
+    {% endif %}
+    {% if status == '1' %}
+        <div class="alert alert-danger" role="alert">
+            Username or email does not match!
+        </div>
+    {% endif %}
+    {% if status == '2' %}
+        <div class="alert alert-warning" role="alert">
+            Please Login
+        </div>
+    {% endif %}
+       
+    <div class="row">
+        <div class="col-md-3">
+            <!-- space only -->
+        </div>
+
+        <div class="col-md">
+            <br>
+            <h1>Login</h1>
+            <hr>
+
+            <form method="POST" action="{% url 'login_validation' %}" >{% csrf_token %}
+
+                <label>e-mail</label>
+                <input name="user_email" class="form-control" type="text" placeholder="napoleon.skeleton@youemail.com">
+                <br>
+
+                <label>Password</label>
+                <input name="user_password" class="form-control" type="Password" placeholder="your most strong pass">
+                <br>
+
+                <input class="btn btn-info btn btn-lg" type="submit">
+                <a href="{% url 'register' %}" class="btn btn-warning btn-lg">Go to Register</a>
+                <a href="" class="btn btn-info btn-lg">I'm Lost</a>
+
+            </form>
+        </div>
+
+        <div class="col-md-3">
+            <!-- space only -->
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

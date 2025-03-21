@@ -1,0 +1,71 @@
+{% extends 'patten_page.html' %}
+
+{% block 'title' %} Register {% endblock %}
+
+{% block 'content' %} 
+
+<div class="container-fluid">
+    <br>
+    {% if status == '0' %}
+        <div class="alert alert-success" role="alert">
+            All Clear, please Login!
+        </div>
+    {% endif %}
+    {% if status == '1' %}
+        <div class="alert alert-danger" role="alert">
+            Username or email cannot be blank
+        </div>
+    {% endif %}
+    {% if status == '2' %}
+        <div class="alert alert-danger" role="alert">
+            Password cannot be shorter than 6 digits
+        </div>
+    {% endif %}
+    {% if status == '3' %}
+        <div class="alert alert-warning" role="alert">
+            This user or email cannot be used
+        </div>
+    {% endif %}
+    {% if status == '4' %}
+        <div class="alert alert-danger" role="alert">
+            System Internal error, try again later
+        </div>
+    {% endif %}          
+    <div class="row">
+        <div class="col-md-3">
+            <!-- space only -->
+        </div>
+
+        <div class="col-md">
+            <br>
+            <h1>Register</h1>
+            <hr>
+
+            <form method="POST" action="{% url 'user_register' %}" >{% csrf_token %}
+                <label>Name</label>
+                <input name="user_name" class="form-control" type="text" placeholder="Napoleon Skeleton" >
+                <br>
+
+                <label>e-mail</label>
+                <input name="user_email" class="form-control" type="text" placeholder="napoleon.skeleton@youemail.com">
+                <br>
+
+                <label>Password</label>
+                <input name="user_password" class="form-control" type="Password" placeholder="your most strong pass">
+                <br>
+
+                <input class="btn btn-info btn btn-lg" type="submit">
+                <a href="{% url 'login' %}" class="btn btn-warning btn-lg">Login</a>
+
+            </form>
+        </div>
+
+        <div class="col-md-3">
+            <!-- space only -->
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
